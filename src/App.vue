@@ -28,24 +28,40 @@ import NavBar from './components/NavBar.vue';
 
 <style>
   * {
-    font-family: Helvetrica;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
+  font-family: Helvetrica;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
+.main-container {
+  margin: 20px;
+  min-height: 250px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #5E17EB;
+}
+
+@media screen and (min-width: 320px) {
+  h1 {
+    font-size: 28px;
+    margin-bottom: 28px;
+  }
+}
+
+@media screen and (min-width: 480px) {
   .main-container {
-    margin: 50px;
-    min-height: 250px;
+    margin: 40px;
   }
 
   h1 {
-    text-align: center;
-    font-size: 42px;
-    margin-bottom: 30px;
-    color: #5E17EB;
+    font-size: 36px;
   }
-
+}
 
 
 </style>

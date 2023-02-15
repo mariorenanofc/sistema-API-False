@@ -12,8 +12,7 @@ export default {
 </script>
 
 <style scoped>
-
-    #main-banner{
+    #main-banner {
         background-image: url('/public/img/banner.jpg');
         background-position: 0 -180px;
         background-size: cover;
@@ -30,4 +29,16 @@ export default {
         padding: 20px;
     }
 
+    /* Estilos específicos para dispositivos com largura de 320px */
+
+    @media only screen and (max-width: 425px) {
+        #main-banner {
+            height: 150px;
+        }
+
+        #main-banner h4 {
+            font-size: 20px;
+            padding: 10px;
+        }
+    }
 </style>

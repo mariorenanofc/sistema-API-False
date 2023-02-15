@@ -180,4 +180,19 @@ button:hover {
     width: 300px;
 
 }
+
+/* Dispositivos com tela de 320px */ 
+@media screen and (max-width: 425px) {
+  #link-form {
+    max-width: 100%;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 24px;
+  }
+}
 </style>
