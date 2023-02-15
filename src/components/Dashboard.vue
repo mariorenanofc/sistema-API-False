@@ -56,7 +56,7 @@ export default {
 h3 {
     color: red;
     border-left: 5px solid red;
-    padding-left: 5px;
+    padding-left: 10px;
     margin-bottom: 3px;
     font-size: 35px;
     transition: .5s;
