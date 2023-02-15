@@ -1,12 +1,11 @@
 <template>
     <div class="container-links">
-        <ul v-if="links.length">
-            <li v-for="link in links" >
-                <h3>Título: {{ link.title }}</h3>
-                <a>URL: {{ link.url }}</a>
-                <p>Nome: {{ link.name }}</p>
-            </li>
-        </ul>
+        <div v-for="link in links" class="link"  :key="link.id">
+            <a :href="link.url" target="_blank">
+                <h3>{{ link.title }}</h3> 
+            </a>
+            <p>- {{ link.name }}</p>
+        </div>
     </div>
 </template>
 
@@ -23,7 +22,7 @@ export default {
     },
     methods: {
         async fetchLinks() {
-            const req = await fetch("http://localhost:3000/salvos");
+            const req = await fetch("http://localhost:3000/links");
             const links = await req.json();
             this.links = links;
         }
@@ -32,15 +31,59 @@ export default {
 </script>
 
 <style scoped>
-    .container-links {
-        display: flexbox;
-        position: inherit;
-    }
+.container-links {
+    display: inline-flex;
+    margin: 0 auto;
+    flex-direction: revert;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+}
 
-    ul li {
-        max-width: 450px;
-        margin: 20px;
-        padding: 30px;
-        border: 3px solid #5E17EB;
-    }
+.link {
+    margin: 15px;
+    padding: 20px;
+    border: 3px solid #5E17EB;
+    border-radius: 15px;
+    width: 360px;
+    height: auto;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+h3 {
+    color: red;
+    border-left: 5px solid red;
+    padding-left: 5px;
+    margin-bottom: 3px;
+    font-size: 35px;
+    transition: .5s;
+}
+
+h3:hover {
+    border-left: none;
+    color: #5E17EB;
+    border-bottom: 5px solid #5E17EB;
+    padding-left: 5px;
+    margin-bottom: 3px;
+    font-size: 35px;
+    text-align: center;
+    transition: .5s;
+}
+
+a {
+    font-size: 18px;
+    text-decoration: none;
+}
+
+p {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 100;
+    right: 100%;
+    width: 100%;
+    text-align: right;
+}
 </style>

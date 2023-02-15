@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="" id="link-form" @submit="createLink">
+        <form action="" id="link-form" @submit.prevent="createLink">
             <div class="input-container">
                 <label for="title">Título do Artigo: </label>
                 <input type="text" id="title" name="title" v-model="title" placeholder="Digite o Título">
@@ -14,7 +14,7 @@
                 <input type="text" id="name" name="name" v-model="name" placeholder="Digite seu nome">
             </div>
             <div class="input-container">
-                <button @click="showAlert()">Enviar</button>
+                <button @click="showAlert()" type="submit">Enviar</button>
             </div>
         </form>
     </div>
@@ -31,7 +31,7 @@ export default {
             // Dados no singular
             title: null,
             url: null,
-            names: null,
+            name: null,
 
             // Dados no plural
             titles: null,
@@ -40,6 +40,36 @@ export default {
         }
     },
     methods: {
+
+        // Validar os campos antes do envio
+        validateFields() {
+            let isValid = true;
+            if (!this.title) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor, preencha o título do artigo',
+                });
+                isValid = false;
+            }
+            if (!this.url) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor, preencha o link do artigo',
+                });
+                isValid = false;
+            }
+            if (!this.name) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor, preencha seu nome',
+                });
+                isValid = false;
+            }
+            return isValid;
+        },
 
         //Mensagem de envio
         async showAlert() {
@@ -54,8 +84,10 @@ export default {
 
         // Enviando dados para o backend
 
-        async createLink(e) {
-            e.preventDefault();
+        async createLink() {
+            if (!this.validateFields()) {
+                return;
+            }
 
             const data = {
                 url: this.url,
@@ -66,7 +98,7 @@ export default {
 
             const dataJson = JSON.stringify(data);
 
-            const req = await fetch("http://localhost:3000/salvos",
+            const req = await fetch("http://localhost:3000/links",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -82,7 +114,6 @@ export default {
             this.name = "";
         },
 
-
         // Editando Links
 
 
@@ -94,6 +125,7 @@ export default {
 
 
 </script>
+
 
 <style scoped>
 #link-form {
