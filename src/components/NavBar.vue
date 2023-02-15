@@ -28,6 +28,7 @@
         justify-content: flex-end;
         align-items: center;
         font-weight: 500;
+        font-size: 18px;
     }
 
     
@@ -50,6 +51,6 @@
 
     #logo {
         width: 130px;
-        height: 80px;
+        height: 85px;
     }
 </style>
