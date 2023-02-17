@@ -24,6 +24,8 @@ Este projeto consiste em uma aplicação web para gerenciar links úteis. Os usu
 - 3 - Inicie o servidor com o comando `npm run serve` ou `yarn serve`
 - 4 - Abra o seu navegador e acesse http://localhost:8080
 
+OBS: É preciso iniciar o servidor do BackEnd! `npm run backend`
+
 
 ## Funcionalidades
 - " Adicionar link"
