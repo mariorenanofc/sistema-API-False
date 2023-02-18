@@ -3,7 +3,7 @@
     {
       "url": "https://pesquisa.bvsalud.org/portal/resource/pt/biblio-1032014",
       "title": "Uso de tecnologias da informação e comunicação na educação em saúde de adolescentes",
-      "name": "Luan Braga Neto",
+      "name": "Luan Braga N",
       "status": "Enviados",
       "id": 2
     },
@@ -34,6 +34,27 @@
       "name": "Robson dos Santos",
       "status": "Enviados",
       "id": 6
+    },
+    {
+      "url": "https://chat.openai.com/chat/",
+      "title": "Chat GPT",
+      "name": "Luanzinho Silva",
+      "status": "Enviados",
+      "id": 7
+    },
+    {
+      "url": "https://stackoverflow.com/",
+      "title": "Stack Overflow é um site de perguntas e respostas para profissionais e entusiastas na área de programação",
+      "name": "Joel Spolsky",
+      "status": "Enviados",
+      "id": 8
+    },
+    {
+      "url": "https://vuejs.org/",
+      "title": "The Progressive JavaScript Framework",
+      "name": "Evan You",
+      "status": "Enviados",
+      "id": 9
     }
   ],
   "salvos": [
