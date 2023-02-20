@@ -38,29 +38,33 @@ export default {
 
     // Deletar os links adicionados
     async deleteList(id) {
-      const confirmResult = await Swal.fire({
-        title: 'Você tem certeza?',
-        text: 'O link selecionado será deletado.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim, deletar',
-        cancelButtonText: 'Cancelar'
+  const confirmResult = await Swal.fire({
+    title: 'Você tem certeza?',
+    text: 'O link selecionado será deletado.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, deletar',
+    cancelButtonText: 'Cancelar'
+  });
+
+  if (confirmResult.isConfirmed) {
+    try {
+      const req = await fetch(`http://localhost:3000/links/${_id}`, {
+        method: "DELETE"
       });
 
-      if (confirmResult.isConfirmed) {
-        const req = await fetch(`http://localhost:3000/links/${id}`, {
-          method: "DELETE"
-        });
+      const res = await req.json();
 
-        const res = await req.json();
+      //msg
 
-        //msg
-
-        this.fetchLinks();
-      }
+      this.fetchLinks();
+    } catch (error) {
+      console.log(error);
     }
+  }
+}
     ,
 
     // Editar Links adicionados
@@ -92,7 +96,7 @@ export default {
             name: formValues.name
           });
 
-          const req = await fetch(`http://localhost:3000/links/${link.id}`, {
+          const req = await fetch(`http://localhost:3000/links/${link._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: dataJson

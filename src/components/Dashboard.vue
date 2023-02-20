@@ -1,34 +1,40 @@
 <template>
     <div class="container-links">
-        <div v-for="link in links" class="link"  :key="link.id">
-            <a :href="link.url" target="_blank">
-                <h3>{{ link.title }}</h3> 
-            </a>
-            <p>- {{ link.name }}</p>
-        </div>
+      <div v-for="link in links" class="link" :key="link._id">
+        <a :href="link.url" target="_blank">
+          <h3>{{ link.title }}</h3>
+        </a>
+        <p>- {{ link.name }}</p>
+      </div>
     </div>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  import axios from "axios";
+  
+  export default {
     name: "Dashboard",
     data() {
-        return {
-            links: []
-        };
+      return {
+        links: [],
+      };
     },
     mounted() {
-        this.fetchLinks();
+      this.fetchLinks();
     },
     methods: {
-        async fetchLinks() {
-            const req = await fetch("http://localhost:3000/links");
-            const links = await req.json();
-            this.links = links;
+      async fetchLinks() {
+        try {
+          const response = await axios.get("http://localhost:3000/links");
+          this.links = response.data;
+        } catch (error) {
+          console.error(error);
         }
-    }
-};
-</script>
+      },
+    },
+  };
+  </script>
+  
 
 <style scoped>
     .container-links {

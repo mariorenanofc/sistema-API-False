@@ -5,10 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "backend": "json-server --watch db/db.json"
+    "start": "nodemon server.js localhost 3000"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "json-server": "^0.17.1",
     "mongoose": "^6.9.1",
@@ -24,5 +25,18 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0"
-  }
+  },
+  "description": "Este projeto consiste em uma aplicação web para gerenciar links úteis. Os usuários podem adicionar links e organizá-los em diferentes categorias.",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariorenanofc/sistema-API-False.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariorenanofc/sistema-API-False/issues"
+  },
+  "homepage": "https://github.com/mariorenanofc/sistema-API-False#readme"
 }

@@ -22,109 +22,104 @@
 
 <script>
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export default {
-    
-    name: "LinkForm",
-    data() {
-        return {
-            // Dados no singular
-            title: null,
-            url: null,
-            name: null,
+  name: 'LinkForm',
+  data() {
+    return {
+      // Dados no singular
+      title: null,
+      url: null,
+      name: null,
 
-            // Dados no plural
-            titles: null,
-            urls: null,
-            names: null
-        }
-    },
-    methods: {
-
-        // Validar os campos antes do envio
-        validateFields() {
-            let isValid = true;
-            if (!this.title) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Por favor, preencha o título do artigo',
-                });
-                isValid = false;
-            }
-            if (!this.url) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Por favor, preencha o link do artigo',
-                });
-                isValid = false;
-            }
-            if (!this.name) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Por favor, preencha seu nome',
-                });
-                isValid = false;
-            }
-            return isValid;
-        },
-
-        //Mensagem de envio
-        async showAlert() {
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Obrigado por contribuir!',
-                showAlert: true,
-                timer: 5000
-            });
-        },
-
-        // Enviando dados para o backend
-
-        async createLink() {
-            if (!this.validateFields()) {
-                return;
-            }
-
-            const data = {
-                url: this.url,
-                title: this.title,
-                name: this.name,
-                status: "Enviados"
-            }
-
-            const dataJson = JSON.stringify(data);
-
-            const req = await fetch("http://localhost:3000/links",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: dataJson
-                });
-
-            const res = await req.json();
-
-            // Limpar dados dos campos
-
-            this.title = "";
-            this.url = "";
-            this.name = "";
-        },
-
-        // Editando Links
-
-
-        // Deletar Links 
+      // Dados no plural
+      titles: null,
+      urls: null,
+      names: null
     }
+  },
+  methods: {
+    // Validar os campos antes do envio
+    validateFields() {
+      let isValid = true;
+      if (!this.title) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, preencha o título do artigo',
+        });
+        isValid = false;
+      }
+      if (!this.url) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, preencha o link do artigo',
+        });
+        isValid = false;
+      }
+      if (!this.name) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Por favor, preencha seu nome',
+        });
+        isValid = false;
+      }
+      return isValid;
+    },
 
+    //Mensagem de envio
+    async showAlert() {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Obrigado por contribuir!',
+        showConfirmButton: false,
+        timer: 5000
+      });
+    },
+
+    // Enviando dados para o backend
+    async createLink() {
+      if (!this.validateFields()) {
+        return;
+      }
+
+      const data = {
+        url: this.url,
+        title: this.title,
+        name: this.name,
+        status: 'Enviados'
+      }
+
+      try {
+        const response = await axios.post('http://localhost:3000/links', data);
+        if (response.status === 201) {
+          this.showAlert();
+          this.title = '';
+          this.url = '';
+          this.name = '';
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ocorreu um erro ao enviar o formulário, tente novamente mais tarde',
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ocorreu um erro ao enviar o formulário, tente novamente mais tarde',
+        });
+      }
+    },
+  }
 }
-
-
-
 </script>
+
 
 
 <style scoped>
