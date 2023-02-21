@@ -9,7 +9,7 @@
       <p>{{ link.name }}</p>
       <div class="button-container">
         <button @click="editList(link)" class="btn-edit">Editar</button>
-        <button @click="deleteList(link.id)" class="btn-delete">Deletar</button>
+        <button @click="deleteList(link._id)" class="btn-delete">Deletar</button>
       </div>
     </div>
   </div>
@@ -36,35 +36,41 @@ export default {
       this.links = links;
     },
 
-    // Deletar os links adicionados
     async deleteList(id) {
-  const confirmResult = await Swal.fire({
-    title: 'Você tem certeza?',
-    text: 'O link selecionado será deletado.',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sim, deletar',
-    cancelButtonText: 'Cancelar'
-  });
-
-  if (confirmResult.isConfirmed) {
-    try {
-      const req = await fetch(`http://localhost:3000/links/${_id}`, {
-        method: "DELETE"
+      const confirmResult = await Swal.fire({
+        title: 'Você tem certeza?',
+        text: 'O link selecionado será deletado.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sim, deletar',
+        cancelButtonText: 'Cancelar'
       });
 
-      const res = await req.json();
+      if (confirmResult.isConfirmed) {
+        try {
+          const req = await fetch(`http://localhost:3000/links/${id}`, {
+            method: "DELETE"
+          });
 
-      //msg
+          const res = await req.json();
 
-      this.fetchLinks();
-    } catch (error) {
-      console.log(error);
+          // Notificação de sucesso
+          if (res.message === 'Link deleted successfully') {
+            await Swal.fire({
+              title: 'Deletado com sucesso!',
+              icon: 'success'
+            });
+          }
+
+          this.fetchLinks();
+        } catch (error) {
+          console.log(error);
+        }
+      }
     }
-  }
-}
+
     ,
 
     // Editar Links adicionados
@@ -234,6 +240,7 @@ button:hover {
     justify-content: center;
     align-items: flex-start;
   }
+
   button {
     margin-top: 10px;
     margin-left: 2px;
