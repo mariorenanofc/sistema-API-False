@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node",
+        "config": {
+          "maxLambdaSize": "2048",
+          "memory": 512
+        },
+        "env": {
+          "DB_USER": "mariorenan",
+          "DB_PASSWORD": "bXvTPpTzMiNYz7gO"
+        }
+      }
+    ]
+  }
+  
