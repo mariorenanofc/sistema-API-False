@@ -5,6 +5,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+require('dotenv').config()
 
 // Criação de uma instância do Express chamada `app`
 const app = express()
@@ -26,13 +27,9 @@ app.get('/links', (req, res) => {
     res.json({ message: 'Conseguiu conectar!' })
 })
 
-// Conexão ao banco de dados MongoDB utilizando as credenciais de um usuário e a senha armazenadas nas variáveis de ambiente DB_USER e DB_PASSWORD.
-const DB_USER = 'mariorenan'
-const DB_PASSWORD = encodeURIComponent('bXvTPpTzMiNYz7gO')
-
 
 // Se a conexão for bem-sucedida, o aplicativo será iniciado na porta 3000. Caso contrário, um erro será exibido no console.
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@apilinkcluster0.sqiwf0y.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("👏👏👏 Conectado com sucesso ao MongoDB!")
         app.listen(3000)
