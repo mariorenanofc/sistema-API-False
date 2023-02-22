@@ -7,8 +7,14 @@
         "config": {
           "maxLambdaSize": "2048",
           "memory": 512
+        },
+        "env": {
+          "MONGO_URI": {"$secret": "MONGO_URI"}
         }
       }
-    ]
+    ],
+    "env": {
+      "MONGO_URI": "@mariorenan/MONGO_URI"
+    }
   }
   
