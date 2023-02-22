@@ -3,14 +3,13 @@
     "builds": [
       {
         "src": "server.js",
-        "use": "@vercel/node",
+        "use": "@now/node",
         "config": {
           "maxLambdaSize": "2048",
           "memory": 512
         },
         "env": {
-          "DB_USER": "mariorenan",
-          "DB_PASSWORD": "bXvTPpTzMiNYz7gO"
+          "MONGO_URI": "mongodb+srv://mariorenan:bXvTPpTzMiNYz7gO@apilinkcluster0.sqiwf0y.mongodb.net/?retryWrites=true&w=majority"
         }
       }
     ]
