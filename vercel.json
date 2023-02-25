@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "server.js",
-        "use": "@vercel/node",
+        "use": "@now/node",
         "config": {
           "maxLambdaSize": "2048",
           "memory": 512
@@ -14,4 +14,3 @@
       "MONGO_URI": "$MONGO_URI"
     }
   }
-  
